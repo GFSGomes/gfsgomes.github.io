@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Calculadora</title>
+    <style>
+        * {margin: 0; padding: 0;}
+        body {padding: 30px;}
+        #body {
+            float: left;
+            display: flex;
+            flex-flow: column;
+            background: darkgray;
+            width: fit-content;
+            padding: 20px;
+            border-radius: 4px;
+        }
+
+        #body > * {
+            flex: 1 1 auto;
+            min-height: 50px;
+        }
+
+        input {
+            color: #444;
+            background-color: #eee;
+            box-shadow: 0px 0px 4px inset #00000050;
+            font-family: monospace;
+            margin-bottom: 10px;
+            text-align: right;
+            padding: 0 20px;
+            font-size: 2.2em;
+            width: 166px;
+            outline: 0;
+            border: 0;
+            border-radius: 2px;
+        }
+        input::placeholder {color: #444;
+        }
+
+        #numpad {
+            display: grid;
+            grid-template: 50px 50px 50px 50px 50px / 50px 50px 50px 50px;
+            gap: 2px;
+        }
+
+        button {
+            transition: all ease 100ms;
+            background-color: #444;
+            text-align: center;
+            color: whitesmoke;
+            font-size: 1.4em;
+            border: 0;
+            
+            border-radius: 2px;
+        }
+        button:hover { background-color: #808080;}
+        button:active { background-color: silver; color: #444;}
+
+        #plus {
+            grid-row: auto / span 2;
+            background-color: #369;
+        }
+        #plus:hover {background-color: #69c;}
+        #plus:active {background-color: azure; color: #369;}
+
+        #history{
+            max-width: 100%;
+            font-family: monospace;
+            text-align: right;
+            width: 500px;
+            min-height: 60vh;
+            padding: 20px;
+            margin-left: 30px;
+            background-color: whitesmoke;
+            font-size: 16px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="body">
+        <input type="text" placeholder="0" disabled>
+        <div id="numpad">
+            <button onclick="Reset()">C</button>
+            <button class="key" value="("></button>
+            <button class="key" value=")"></button>
+            <button class="key" value="/"></button>
+
+            <button class="key" value="7"></button>
+            <button class="key" value="8"></button>
+            <button class="key" value="9"></button>
+            <button class="key" value="*"></button>
+
+            <button class="key" value="4"></button>
+            <button class="key" value="5"></button>
+            <button class="key" value="6"></button>
+            <button class="key" value="-"></button>
+
+            <button class="key" value="1"></button>
+            <button class="key" value="2"></button>
+            <button class="key" value="3"></button>
+            <button class="key" value="+" id="plus"></button>
+
+            <button class="key" value="."></button>
+            <button class="key" value="0"></button>
+            <button onclick="Result()">=</button>
+        </div>
+    </div>
+
+    <div id="history">
+        <h1>Histórico</h1>
+        <p onclick='ClearHistory()'>Limpar Histórico</p>
+    </div>
+
+    <script>
+        // Declarações:
+        var cycle = false;
+        let Key = document.querySelectorAll('.key');
+        const DISPLAY = document.querySelector('input');
+        const HISTORY = document.querySelector('#history');
+        
+        for (let i = 0; i < Key.length; i++){
+            
+            // I. Adicionando caracteres à equação:
+            Key[i].addEventListener('click', function(){
+
+                // Checa a finalização da conta;
+                if(cycle){
+                    Reset();
+                    cycle = false;
+                }
+
+                if (DISPLAY.value == 0)
+                    DISPLAY.value = Key[i].value;
+                else
+                    DISPLAY.value += Key[i].value;
+            });
+
+            // II. Mostrando o valor na tecla:
+            if (Key[i].value !== "")
+                Key[i].innerHTML = Key[i].value;
+        }
+
+        function Reset(){
+            DISPLAY.value = 0;
+        }
+
+        function Result(){
+            HISTORY.innerHTML += DISPLAY.value + " = ";
+            DISPLAY.value = eval(DISPLAY.value);
+            HISTORY.innerHTML += "<b>" + DISPLAY.value + "</b><br>";
+            cycle = true;
+        }
+
+        function ClearHistory(){
+            HISTORY.innerHTML = "<h1>Histórico</h1><p onclick='ClearHistory()'>Limpar Histórico</p>";
+        }
+    </script>
+</body>
+</html>

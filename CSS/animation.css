@@ -1,0 +1,35 @@
+/*------------------------------------------
+Específicas => identificador em caixa alta */
+@keyframes _opacityAndSoftShadow {
+    from {
+        opacity: 0%;
+    }
+    to {
+        background-color: white;
+        opacity: 100%;
+        box-shadow:
+        0 01px 01px #00000030,
+        0 02px 02px #00000030,
+        0 04px 04px #00000030,
+        0 08px 08px #00000030,
+        0 16px 16px #00000030,
+        0 32px 32px #00000030,
+        0 64px 64px #00000030;
+    }
+}
+
+@keyframes _INTRO_BG {
+    to {}
+}
+
+/*-----------------------------------------
+Genéricas => identificador em caixa-baixa */
+@keyframes _rightToLeft {
+    from {left: 100vw;}
+    to {left: 0;}
+}
+
+@keyframes _float {
+    from {top: 0px;}
+    to {top: 3px;}
+}

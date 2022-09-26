@@ -1,0 +1,121 @@
+@import 'animation.css';
+
+html {
+    /* Aparência */
+    font-family: Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+    
+}
+
+body > * {
+    /* Dimensionamento */
+    padding: 0 10vw;
+}
+
+/* #region [#HEADER] ================================================== */
+#HEADER {
+    /* Dimensionamento */
+    position: fixed;
+    display: flex;
+    padding: 10px 10vw;
+    width: 100%;
+    z-index: 999;
+    
+    /* Aparência */
+    opacity: 0%;
+    cursor: default;
+    user-select: none;
+    font-variant: small-caps;
+    border-bottom: 4px solid cyan;
+
+    animation:  1s _opacityAndSoftShadow 1s forwards;
+}
+
+#HEADER h1 {
+    /* Dimensionamento */
+    margin: 0;
+}
+
+#HEADER nav {
+    /* Dimensionamento */
+    display: flex;
+
+    /* Aparência */
+    align-items: center;
+}
+
+#HEADER nav a {
+    /* Dimensionamento */
+    display: inline-block;
+    padding: 4px 6px;
+    flex: 1 1 33%;
+
+    /* Aparência */
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms ease-out;
+}
+#HEADER nav a:hover {
+    background-color: cyan;
+    transform: translate(0, -3px);
+}
+/* #endregion */
+
+#INTRO {
+    /* Dimensionamento */
+    height: 100vh;
+    margin: 0 -10vw;
+    padding: 20vh 10vw 10vh 10vw;
+
+    /* Aparência */
+    user-select: none;
+    color: white;
+    background-color: #222;
+    font-variant: small-caps;
+}
+
+#INTRO img {
+    /* Dimensionamento */
+    height: 360px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+    right: 15vw;
+
+    /* Aparência */
+    user-select: none;
+    -webkit-user-drag: none;
+    opacity: 0;
+    transition: all 500ms ease-out;
+    animation: 1s _opacityAndSoftShadow 3s forwards;
+}
+#INTRO img:hover {
+    transform: scale(102%);
+}
+
+#INTRO h1, #INTRO h2 {
+    position: relative;
+    margin: 0;
+    top: 35vh;
+    left: 100vw;
+    z-index: 0;
+
+    animation: 0.75s _rightToLeft ease-out 2s forwards;
+}
+#INTRO h1 {
+    font-size: 3.2em;
+}
+#INTRO h2 {
+    color: silver;
+    font-size: 3.0em;
+    animation: 0.80s _rightToLeft ease-out 2s forwards;
+}
+#INTRO h2 span{
+    color: #00aaaa;
+    transition: all 250ms ease-out;
+}
+#INTRO h2 span:hover {
+    color: cyan;
+    text-shadow: 0 0 10px #00ffff50;
+}
